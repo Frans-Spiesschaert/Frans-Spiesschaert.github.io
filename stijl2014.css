@@ -1,0 +1,351 @@
+/* ------ Bestand Stijl2014.css ------ */
+
+/* Dit is het stijlbestand dat gebruikt werd voor
+het heraanmaken van mijn website.
+Een geheugensteuntje voor het opfrissen van wat kennis in verband
+met het werken met een stijlbestand is te vinden op:
+http://www.handleidinghtml.nl/
+http://sceneone.nl/ 
+Volledige informatie over het gebruik van CSS is te vinden op:
+https://www.w3schools.com/css/default.asp */
+
+/* In dit stijlbestand wordt gebruik gemaakt van verschillende
+types selectors om aan te geven welk HTML-element we willen stijlen.
+Meer over selectors op: https://www.w3schools.com/css/css_selectors.asp */
+
+/* Een voorbeeld van verkorte schrijfwijze
+
+div#afbeelding{
+clear: left;
+background: #D3E6CF url(./images/bg.png) 0 0 no-repeat;
+height: 300px;
+width: 225px;
+border: 5px solid #618059;
+}
+
+bemerk hoe hierboven een verkorte schrijfwijze is toegepast
+voor wat hieronder staat
+
+div#afbeelding{
+clear: left;
+background-color: #D3E6CF;
+background-image: url(./images/bg.png);
+background-position: top left; (of 0 0)
+background-repeat: no-repeat;
+height: 300px;
+width: 225px;
+border-width: 5px;
+border-style: solid;
+border-color: #618059;
+}
+*/
+
+/* HIER BEGINT DE DOOR MIJ AANGEMAAKTE STIJL */
+
+* {
+    box-sizing: border-box;
+    /* in de berekening van de totale breedte en hoogte van alle elementen
+       zijn padding en boorden inbegrepen indien ze die bevatten  */
+}
+
+/* De grote kenmerken van de site zijn de eigenschappen
+die aan de body meegegeven werden.
+Het body-gedeelte wordt geopend in vast-deel-2.txt
+Voordien is het head-gedeelte aangemaakt in
+vast-deel-1.txt en in <paginanaam>-var-deel-1.txt  */
+
+body{
+font-family: verdana, arial, helvetica, sans-serif;
+/* font-size: 62.5%; /* = 10px (viel mij wat te klein uit)
+Nu gebruiken we de standaard font-size door er geen op te geven */
+margin: 0;
+text-align: center;
+color: rgb(0, 0, 0);
+background-color: rgb(255, 204, 153);
+}
+
+/* in het body-gedeelte wordt de main_container gecentreerd, zodat
+de hele pagina gecentreerd wordt, aangezien de main_container
+alles omvat.
+Het is binnen de main_container dat de ingesloten
+elementen gepositioneerd worden van links naar rechts. Daarom 
+staat text-align in de main_container op left.
+De main_container wordt geopend in vast-deel-2.txt */
+
+div#main_container{
+/* hieronder is een verkorte schrijfwijze toegepast van:
+padding-top: 10px;
+padding-right: 10px;
+padding-bottom: 5px;
+padding-left: 10px;
+hetzelfde geldt voor margin */
+padding: 10px 10px 5px 10px;
+        /* boven rechts onder links (padding = marge binnen het object) */
+margin: 0 auto 0 auto;
+       /* boven rechts onder links (margin = marge buiten het object) */
+/* width: 750px; uitgecommentarieerd geeft een variabele breedte, 
+zodat het geheel zich aanpast aan de beedte van het venster
+van de browser */
+text-align: left;
+}
+
+/* Het vaste deel van de titel op de pagina (in de eerste
+box van volle breedte), wordt op een speciale manier aangemaakt,
+namelijk met de before-after-constructie.
+Dit vaste deel wordt aangemaakt in vast-deel-2.txt
+Het variabele deel staat in <paginanaam>-var-deel-2.txt */
+
+p.page-header:before{
+	content: "Homepagina van ";
+	font-size: 125%;
+}
+
+p.page-header:after{
+	content: "Frans Spiesschaert";
+	font-size: 150%;
+	font-weight: bold;
+	/* uitgecommentarieerd zou het wat minder schreeuwerig zijn */
+}
+
+/* Alle gebruikte lijnen krijgen dezelfde kenmerken.
+De clear-opdracht zorgt ervoor dat alle boxen
+die tot dan gebruikt werden, ook effectief eerst
+op hun plaatst gezet worden.
+De eerste hr komt aan bod in vast-deel-3.txt */
+
+hr{
+width: 100%;
+height: 2px;
+clear: both;
+float: left;
+}
+
+/* De breedte van onderstaande box is beperkt tot 98% omdat
+die dan even breed is als een lijn over de volledige breedte.
+Bovenstaande argumentatie geldt wellicht niet meer nu we in het begin
+van het stijlbestand box-sizing hebben toegepast. */
+
+div#full-lenght-box{
+width: 98%;
+/* height: 75px; uitgecommentarieerd geeft een variabele hoogte */
+/* padding: 1px 1% 1px 1%; /* boven rechts onder links */
+clear: both;
+/* De clear-opdracht zorgt ervoor dat alle boxen
+die tot dan gebruikt werden, ook effectief eerst
+op hun plaatst gezet worden. */
+}
+
+/* De weergave van de navigatieafbeeldingen bovenaan.
+Ze hebben dezelfde gemeenschappelijke kenmerken
+Door de breedte en de hoogte in te stellen zoals
+hieronder zou de grootte van de figuren indien
+nodig verkleind moeten kunnen worden, maar nooit groter
+mogen weergegeven worden dan hun originele grootte.
+Deze afbeeldingen worden verwerkt in vast-deel-3.txt. */
+    
+
+img.120, img.140, img.190, img.210, img.250{
+	border-syle: solid;
+	border-width: 0pt;
+	max-width: 100%;
+	height: auto;
+        object-fit:contain;
+}
+    
+
+/* Naast de korte inhoud van de pagina (rechts) komt links een box
+   met daarin een kader met een site-map (navigatiemogelijkheid)
+   Deze korte inhoud staat in <paginanaam>-var-deel-3.txt
+   De sitemap staat in vast-deel-4.txt  */
+
+/* Hiermee worden korte inhoud en site-map in kolommen onderverdeeld
+   We maken gebruik van media queries om deze elementen goed te
+   positioneren op media met verschillende (2) schermgroottes. */
+
+/* De kolommen in een rij zweven allemaal naar links en worden daarom
+   uit de stroom van de pagina gehaald, terwijl andere elementen worden
+   geplaatst alsof de kolommen niet bestaan. Om dit te voorkomen, voegen
+   we met .row::after een stijl toe die de stroom opruimt. */
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+
+/* voor mobiele telefoons: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 630px) {
+  /* voor tablets and desktops: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+
+/*  Samenvatting (of in de startpagina foto en intro)
+    en Navigatiebox */
+
+div#summary{
+float: left;
+width: 50%;
+padding: 0px 1% 0px 1%; /* boven rechts onder links */
+}
+
+/* Intro staat binnen div#summary over de volledige breedte ervan */
+
+div#intro{
+float: left;
+width: 100%;
+padding: 0px 1% 0px 15px; /* boven rechts onder links */
+}
+
+/* Deze navigatiebox wordt verwerkt in vast-deel-4.txt */
+
+div#navbox{
+float: left;
+width: 50%;
+padding: 0% 1% 0% 1%; /* boven rechts onder links */
+}
+
+/* De verticale navigatiebalk is eigenlijk opgevat als een
+lijst zonder bolletjes (of cijfers), vandaar sober.
+   Het inspringen van de elementen is beperkt gehouden
+door de linkermarge een negatieve waarde te geven */
+
+ul.sober{
+    list-style: none;
+    margin-left:-25px;
+}
+
+li.vertical a:hover, a:active{
+color: #000;
+text-decoration: none;
+}
+
+/* Alle gebruikte tabellen krijgen dezelfde kenmerken.
+In de praktijk gebruik ik voor het vaste gedeelte van mijn 
+webpagina maar één tabel, namelijk die met de vertikale navigatiebalk.
+Het zou anders zeker niet aangewezen zijn om alle tabellen
+een vaste hoogte en breedte te geven. */
+
+table#t01{
+	text-align: left; 
+	font-size: 12pt;
+	width: 310px; 
+	height: 280px; 
+	border-style: ridge;
+/*	border-style: groove; een andere manier om de indruk van perspectief te wekken */
+	border-width:  5px;
+	border-color:  #618059;
+}
+
+/* De weergave van mijn foto is eigenlijk een bijzondere
+vorm van div#summary. Ze wordt gerealiseerd door de combinatie
+van de twee volgende stijlelementen. Eerst wordt een paragraaf
+gemaakt met een aantal kenmerken, zoals achtergrondkleur,
+binnen- en buitenmarge, enz. De font-kenmerken bepalen
+hoe het bijschrift bij de foto eruit zal zien.
+In tweede instantie geven we het beeld zelf een vaste
+hoogte en breedte.
+Deze afbeelding wordt verwerkt in index-var-deel-3.txt  */
+
+p.image{
+float: left;
+padding: 10px 10px 5px 10px; /* boven rechts onder links */
+margin: 15px 15px 0px 15px; /* boven rechts onder links */
+background: #999;
+font-style: italic;
+font-size: 80%;
+color: #fff;
+text-align: center;
+}
+
+img.frans{
+	height: 180px;
+	width: 180px;
+}
+
+/* Er is in mijn webpagina nog een andere tabel
+die de links bevat naar de verschillende onderdelen
+en de verschillende formaten van de documenten uit
+debian-edu-doc-nl, zoals die op internet te raadplegen zijn.
+Deze afbeelding wordt verwerkt in foss-en-ik-var-deel-4.txt  */
+
+table#t02{
+	text-align: left; 
+	width: 60%;
+}
+
+/* Dit beeld staat links onderaan bepaalde pagina's */
+
+img.terug{
+	border-syle: solid;
+	border-width: 0pt;
+	vertical-align: middle;
+	height: 26px;
+	width: 70px;
+}
+
+/* Hieronder definiëren we een aantal class-selectors
+om te gebruiken bij het formatteren van tekst */
+
+.underline{
+	text-decoration: underline;
+}
+
+.bold{
+	font-weight: bold;
+}
+
+.italic{
+	font-style: italic;
+}
+
+.small{
+	font-size: 62.5%;
+}
+
+.big{
+	font-size: 140%;
+}
+
+.centered{
+	text-align: center;
+}
+
+.left{
+	text-align: left;
+}
+
+.justify{
+	text-align: justify;
+}
+
+.indent{
+	margin-left: 40px;
+}
+
+/* Publicaties krijgen een beetje een aparte opmaak
+voor titel en uitgave-informatie. */
+
+.publicatie{
+	color: rgb(79, 79, 79);
+}
+
